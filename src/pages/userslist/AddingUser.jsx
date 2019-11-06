@@ -91,7 +91,7 @@ export default class AddingUser extends Component {
             <label htmlFor="country">Kraj</label>
           </div>
           <div className="input-field col s12">
-            <input id="email" type="text" className='validate' value={this.state.userinfo.email} onChange={e => this.changeValue('email', e.target.value)} required />
+            <input id="email" type="email" className='validate' value={this.state.userinfo.email} onChange={e => this.changeValue('email', e.target.value)} required />
             <label htmlFor="email">Login (email)</label>
           </div>
           <div className="input-field col s12">

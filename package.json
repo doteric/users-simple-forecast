@@ -1,14 +1,17 @@
 {
-  "name": "kotrak-test",
+  "name": "users-simple-forecast",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "crypto-js": "^3.1.9-1",
+    "email-validator": "^2.0.4",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "generate-password": "^1.4.2",
     "jquery-param": "^1.0.2",
     "nedb": "^1.8.0",
     "node-fetch": "^2.6.0",
+    "nodemailer": "^6.3.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",

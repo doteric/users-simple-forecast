@@ -56,6 +56,7 @@ export default class UsersList extends Component {
       })
     });
     const data = await response.json();
+    console.log(data);
     if (typeof data.status !== 'undefined') {
       if (data.status === 'nopermission') {
         this.props.history.push('/nopermission');
@@ -67,6 +68,7 @@ export default class UsersList extends Component {
           return value.email === email;
         });
         users.splice(wantedIndex, 1);
+        this.setState({users: users});
       }
     }
   }

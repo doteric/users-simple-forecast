@@ -2,6 +2,8 @@ import { Router } from 'express';
 const CryptoJS = require("crypto-js");
 const param = require('jquery-param');
 const fetch = require("node-fetch");
+const passgen = require('generate-password');
+const emailvalidator = require("email-validator");
 
 const Datastore = require('nedb');
 const db = new Datastore({ filename: 'users.db' });
@@ -13,6 +15,16 @@ require('dotenv').config();
 if (process.env.ENV_OK !== "yes") {
   throw new Error('The .env file is not included.');
 }
+
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  auth: {
+      user: process.env.EMAIL_AUTH_USER,
+      pass: process.env.EMAIL_AUTH_PASSWORD
+  }
+});
 
 export default () => {
   const router = Router();
@@ -152,11 +164,36 @@ export default () => {
       });
       return;
     }
+    else if (emailvalidator.validate(req.body.userinfo.email) === false) {
+      res.json({
+        status: "wrongemail"
+      });
+      return;
+    }
 
     db.findOne({email: req.body.userinfo.email}, (err, doc) => {
       if (doc === null) {
+        const password = passgen.generate({
+          length: 8,
+          numbers: true
+        });
+        req.body.userinfo.password = password;
+        req.body.userinfo.isadmin = false;
         db.insert(req.body.userinfo, (err, newDoc) => {
-          // Inserted?
+          const message = {
+            from: 'florencio67@ethereal.email',
+            to: req.body.userinfo.email,
+            subject: 'users-simple-forecast password',
+            text: 'Here is your password for users-simple-forecast <b>'+password+'</b>'
+          };
+          transporter.sendMail(message, function(err, info) {
+              if (err) {
+                console.log(err)
+              } else {
+                console.log(info);
+              }
+          });
+
           res.json({ status: "success" });
         });
       }

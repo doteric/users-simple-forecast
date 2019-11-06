@@ -80,7 +80,7 @@ export default class Login extends Component {
         <form className="loginbox" onSubmit={this.login}>
           <div className="row">
             <div className="input-field col s12">
-              <input id="login" type="text" className={this.state.inputClass} value={this.state.login} onChange={e => this.changeValue('login', e.target.value)} required />
+              <input id="login" type="email" className={this.state.inputClass} value={this.state.login} onChange={e => this.changeValue('login', e.target.value)} required />
               <label htmlFor="login">Login (email)</label>
             </div>
             <div className="input-field col s12">
