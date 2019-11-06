@@ -14,6 +14,9 @@ https://developer.yahoo.com/weather/
 ## Additional information
 
 **Password are stored as plaintext inside the `users.db` file!**
+
 Current login info for admin:
+
 login: test@test.com
+
 password: test
