@@ -88,7 +88,7 @@ export default class Users extends Component {
           <div className="top">
             <div className="col">
               <a href="../users">
-                <button className="waves-effect waves-light btn optionbutton">
+                <button className="waves-effect waves-light btn optionbutton" title="Go back to user list">
                   <i className="material-icons">keyboard_arrow_left</i>
                 </button>
               </a>
@@ -96,6 +96,11 @@ export default class Users extends Component {
             <div className="col fillspace">
               <div className="username">{this.state.userinfo.firstname} {this.state.userinfo.surname}</div>
               <div className="userlocation">{this.state.userinfo.city}, {this.state.userinfo.country}</div>
+            </div>
+            <div className="col">
+              <button className="waves-effect waves-light btn optionbutton red darken-1" title="Logout">
+                <i className="material-icons">exit_to_app</i>
+              </button>
             </div>
           </div>
         </div>

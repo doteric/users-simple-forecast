@@ -106,14 +106,14 @@ export default class UsersList extends Component {
                       <td>{object.email}</td>
                       <td>
                         <a href={"../user/"+object.email}>
-                          <button className="waves-effect waves-light btn optionbutton">
+                          <button className="waves-effect waves-light btn optionbutton" title="View user">
                             <i className="material-icons">account_box</i>
                           </button>
                         </a>
-                        <button className="waves-effect waves-light btn orange accent-3 optionbutton">
+                        <button className="waves-effect waves-light btn orange accent-3 optionbutton" title="Edit user">
                           <i className="material-icons">create</i>
                         </button>
-                        <button className="waves-effect waves-light btn red darken-3 optionbutton" onClick={() => this.removeUser(object.email)}>
+                        <button className="waves-effect waves-light btn red darken-3 optionbutton" onClick={() => this.removeUser(object.email)} title="Remove user">
                           <i className="material-icons">remove</i>
                         </button>
                       </td>
