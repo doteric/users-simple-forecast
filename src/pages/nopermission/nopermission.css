@@ -1,0 +1,13 @@
+.centerholder {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centerholder .card-panel {
+  margin: 0 auto;
+  max-width: 500px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+}

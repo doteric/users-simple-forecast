@@ -1,0 +1,60 @@
+.userholder {
+  padding: 10px;
+  -webkit-print-color-adjust: exact;
+}
+
+.userbox {
+  max-width: 960px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.userbox .top {
+  background-color: #f6f6f6;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.userbox .col.fillspace {
+  flex: 1;
+}
+.userbox .optionbutton {
+  padding: 0 10px;
+  margin: 0 4px;
+}
+.userbox .optionbutton a {
+  color: inherit;
+}
+.userbox .username {
+  font-size: 20px;
+}
+.userbox .userlocation {
+  font-size: 16px;
+}
+
+.userbox .main {
+  padding: 10px;
+}
+.userbox .main .todayhead {
+  font-size: 20px;
+}
+.userbox .main .todayrow {
+  display: flex;
+}
+.userbox .main .todayrow .col {
+  flex: 1;
+}
+.userbox .main .todayrow .col .colhead {
+  font-weight: bold;
+}
+.userbox .main .todayrow .col .colcontent {
+  font-size: 24px;
+}
+
+.userbox .main table {
+  width: 100%;
+}

@@ -1,0 +1,42 @@
+.usersholder {
+  padding: 10px;
+}
+
+.usersbox {
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: #fafafa;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.usersbox .optionbutton {
+  padding: 0 10px;
+  margin: 0 4px;
+}
+
+.adduserbutton {
+  margin-top: 20px;
+}
+
+.adduserholder {
+  margin-top: 14px;
+}
+.boxtopcorner {
+  margin: 0 auto;
+  margin-bottom: -32px;
+  height: 40px;
+  width: 40px;
+  background-color: #fafafa;
+  transform: rotate(45deg);
+}
+.adduserbox {
+  margin: 0 auto;
+  max-width: 300px;
+  background-color: #fafafa;
+  padding: 6px 18px;
+  border-radius: 10px;
+}
+.adduserbox .btn {
+  display: block;
+  width: 100%;
+}
