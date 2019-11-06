@@ -10,6 +10,8 @@ export default class Users extends Component {
       today: {},
       days: []
     }
+
+    this.logout = this.logout.bind(this);
   }
 
   async componentDidMount() {
@@ -81,6 +83,22 @@ export default class Users extends Component {
     return Math.round((fahrenheit - 32) * 5/9);
   }
 
+  async logout() {
+    const requestUrl = window.location.protocol+"//"+window.location.hostname+":5000";
+    const response = await fetch(requestUrl+"/auth/logout", {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await response.json();
+    if (data.status === "success") {
+      this.props.history.push('/');
+    }
+  }
+
   render() {
     return (
       <div className="userholder">
@@ -98,7 +116,7 @@ export default class Users extends Component {
               <div className="userlocation">{this.state.userinfo.city}, {this.state.userinfo.country}</div>
             </div>
             <div className="col">
-              <button className="waves-effect waves-light btn optionbutton red darken-1" title="Logout">
+              <button className="waves-effect waves-light btn optionbutton red darken-1" title="Logout" onClick={this.logout}>
                 <i className="material-icons">exit_to_app</i>
               </button>
             </div>

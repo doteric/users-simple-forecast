@@ -65,6 +65,17 @@ export default () => {
     });
   });
 
+  // GET /auth/logout
+  router.get('/auth/logout', (req, res) => {
+    if (typeof req.session.email !== 'undefined') {
+      req.session.destroy();
+      res.json({ status: "success" });
+    }
+    else {
+      res.json({ status: "fail" });
+    }
+  });
+
   // GET /getuserlist
   router.get('/getuserlist', (req, res) => {
     if (req.session.isadmin !== true) {
