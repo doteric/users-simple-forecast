@@ -20,7 +20,7 @@ export default class AddingUser extends Component {
   changeValue(where, value) {
     let curState = this.state.userinfo;
     curState[where] = value;
-    this.setState({userinfo:curState});
+    this.setState({userinfo: curState});
   }
 
   async confirmAddUser(event) {

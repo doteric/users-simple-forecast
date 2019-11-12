@@ -40,3 +40,7 @@
   display: block;
   width: 100%;
 }
+
+.userrow input {
+  max-width: 140px;
+}

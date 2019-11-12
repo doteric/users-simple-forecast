@@ -166,6 +166,20 @@ export default () => {
     });
   });
 
+  // POST /edituser
+  router.post('/edituser', (req, res) => {
+    if (req.session.isadmin !== true) {
+      res.json({
+        status: "nopermission"
+      });
+      return;
+    }
+
+    db.update({email: req.body.curEmail}, {$set: req.body.newUserinfo}, (err, numReplaced) => {
+      res.json({ status: "success" });
+    });
+  });
+
   // POST /removeuser
   router.post('/removeuser', (req, res) => {
     if (req.session.isadmin !== true) {
