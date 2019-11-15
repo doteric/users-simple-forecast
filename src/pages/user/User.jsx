@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './user.css';
 
-export default class Users extends Component {
+export default class User extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       userinfo: {},
       today: {},
-      days: []
+      days: [],
+      myprofile: false
     }
-
-    this.logout = this.logout.bind(this);
   }
 
   async componentDidMount() {
@@ -31,6 +30,9 @@ export default class Users extends Component {
       return;
     }
     this.setState({ userinfo: dataUserinfo });
+    if (dataUserinfo.myProfile) {
+      this.setState({myprofile: dataUserinfo.myProfile});
+    }
 
     const location = dataUserinfo.city+", "+dataUserinfo.country;
     const response = await fetch(requestUrl+"/getlocationdata/"+location, {
@@ -83,23 +85,11 @@ export default class Users extends Component {
     return Math.round((fahrenheit - 32) * 5/9);
   }
 
-  async logout() {
-    const requestUrl = window.location.protocol+"//"+window.location.hostname+":5000";
-    const response = await fetch(requestUrl+"/auth/logout", {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    });
-    const data = await response.json();
-    if (data.status === "success") {
-      this.props.history.push('/');
-    }
-  }
-
   render() {
+    let logoutOption = "";
+    if (this.state.myprofile === true) {
+      logoutOption = <LogoutButton history={this.props.history}/>
+    }
     return (
       <div className="userholder">
         <div className="userbox">
@@ -115,11 +105,7 @@ export default class Users extends Component {
               <div className="username">{this.state.userinfo.firstname} {this.state.userinfo.surname}</div>
               <div className="userlocation">{this.state.userinfo.city}, {this.state.userinfo.country}</div>
             </div>
-            <div className="col">
-              <button className="waves-effect waves-light btn optionbutton red darken-1" title="Logout" onClick={this.logout}>
-                <i className="material-icons">exit_to_app</i>
-              </button>
-            </div>
+            {logoutOption}
           </div>
         </div>
         <div className="userbox">
@@ -159,6 +145,40 @@ export default class Users extends Component {
             </tbody>
           </table>
         </div>
+      </div>
+    )
+  }
+}
+
+class LogoutButton extends Component {
+  constructor(props) {
+    super(props);
+
+    this.logout = this.logout.bind(this);
+  }
+
+  async logout() {
+    const requestUrl = window.location.protocol+"//"+window.location.hostname+":5000";
+    const response = await fetch(requestUrl+"/auth/logout", {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await response.json();
+    if (data.status === "success") {
+      this.props.history.push('/');
+    }
+  }
+
+  render() {
+    return (
+      <div className="col">
+        <button className="waves-effect waves-light btn optionbutton red darken-1" title="Logout" onClick={this.logout}>
+          <i className="material-icons">exit_to_app</i>
+        </button>
       </div>
     )
   }

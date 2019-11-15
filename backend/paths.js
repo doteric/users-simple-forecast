@@ -103,6 +103,7 @@ export default () => {
 
   // GET /getuserinfo
   router.get('/getuserinfo/:email', (req, res) => {
+    let myProfile = false;
     if (req.session.email !== req.params.email) {
       if (req.session.isadmin !== true) {
         res.json({
@@ -111,6 +112,9 @@ export default () => {
         return;
       }
     }
+    else {
+      myProfile = true;
+    }
 
     db.findOne({email: req.params.email}, (err, doc) => {
       res.json({
@@ -118,6 +122,7 @@ export default () => {
         surname: doc.surname,
         city: doc.city,
         country: doc.country,
+        myProfile: myProfile
       });
     });
   });
