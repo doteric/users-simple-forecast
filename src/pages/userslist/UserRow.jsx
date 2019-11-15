@@ -12,6 +12,7 @@ export default class UserRow extends Component {
     this.editUser = this.editUser.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
     this.discardChanges = this.discardChanges.bind(this);
+    this.removeUser = this.removeUser.bind(this);
   }
 
   viewProfile() {
@@ -81,12 +82,7 @@ export default class UserRow extends Component {
         return;
       }
       else if (data.status === 'success') {
-        const users = this.state.users;
-        const wantedIndex = users.findIndex((value) => {
-          return value.email === email;
-        });
-        users.splice(wantedIndex, 1);
-        this.setState({users: users});
+        document.location.reload();
       }
     }
   }
